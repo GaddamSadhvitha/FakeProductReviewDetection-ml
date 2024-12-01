@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Review Detection</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <h1>Fake Review Detection</h1>
+    <!-- Form to submit a review -->
+    <form id="reviewForm" action="/predict" method="POST">
+        <textarea name="review" placeholder="Enter your review here..." rows="5" cols="40"></textarea><br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Display the prediction -->
+    {% if prediction %}
+        <h3>Prediction: {{ prediction }}</h3>
+    {% endif %}
+
+    <script>
+        // Reset the form after submission
+        document.getElementById("reviewForm").onsubmit = function() {
+            setTimeout(function() {
+                document.getElementById("reviewForm").reset();  // Clears the form after submission
+            }, 500);  // Wait 500ms before resetting to ensure the form submits properly
+        }
+    </script>
+</body>
+</html>
